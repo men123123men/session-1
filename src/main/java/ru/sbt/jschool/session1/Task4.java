@@ -28,8 +28,10 @@ public class Task4 {
             printHello(System.getenv().get("JSCHOOl1_COUNT"));
             return;
         }
-//        if (System.getenv().containsKey("JSCHOOL1_PROPERTIES_FILE"))
-//            printHello(getCountFromFile(System.getenv().get("JSCHOOL1_PROPERTIES_FILE")));
+        if (System.getenv().containsKey("JSCHOOL1_PROPERTIES_FILE"))
+            printHello(getCountFromFile(System.getenv().get("JSCHOOL1_PROPERTIES_FILE")));
+
+        System.out.println("сообщение о вариантах исопльзования программы))))))");
 
     }
     public static void printHello(String countOfHellowStr){
