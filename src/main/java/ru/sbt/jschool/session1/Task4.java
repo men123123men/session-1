@@ -18,15 +18,15 @@ public class Task4 {
 
         if (matcher.find()) {
             printHello(matcher.group("COUNT"));
-            System.exit(0);
+            return;
         }
         if (System.getProperties().containsKey("JSCHOOl1_COUNT")){
             printHello(System.getProperty("JSCHOOl1_COUNT"));
-            System.exit(0);
+            return;
         }
         if (System.getenv().containsKey("JSCHOOl1_COUNT")){
             printHello(System.getenv().get("JSCHOOl1_COUNT"));
-             System.exit(0);
+            return;
         }
 //        if (System.getenv().containsKey("JSCHOOL1_PROPERTIES_FILE"))
 //            printHello(getCountFromFile(System.getenv().get("JSCHOOL1_PROPERTIES_FILE")));
