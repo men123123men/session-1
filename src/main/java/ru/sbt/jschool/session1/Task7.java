@@ -36,9 +36,6 @@ public class Task7 {
             } else
                 j++;
         }
-
-        long[] result = new long[k];
-        System.arraycopy(intermediateArray,0,result,0,k);
-        return result;
+        return Arrays.copyOf(intermediateArray,k);
     }
 }

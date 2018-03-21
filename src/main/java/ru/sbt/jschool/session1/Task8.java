@@ -46,12 +46,16 @@ public class Task8 implements PropertyHelper{
 
         if (goodMatcher.isPresent())
             result = goodMatcher.get().group("VALUE");
+
         else if (System.getProperties().containsKey(name))
             result = System.getProperties().getProperty(name);
+
         else if (System.getenv().containsKey(name))
             result = System.getenv(name);
+
         else if (Files.exists(propertyFilePath) && propertiesFromFile.containsKey(name))
             result = propertiesFromFile.getProperty(name);
+
         return result;
     }
     @Override
