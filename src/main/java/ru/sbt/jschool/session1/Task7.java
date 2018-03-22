@@ -96,9 +96,9 @@ public class Task7 {
         long[] intermediateArray = new long[large.length];
         int k = 0;
 
-        // o(n*log(m)),
-        // где n - кол-во элементов в меньшем массиве,
-        // а   m - кол-во элементов в большем массиве
+        // o(m*log(n)),
+        // где n - кол-во элементов в большем массиве,
+        // а   m - кол-во элементов в меньшем массиве
         for (long current:small){
             int head=0, tail=large.length, position;
             while (tail-head>1){
