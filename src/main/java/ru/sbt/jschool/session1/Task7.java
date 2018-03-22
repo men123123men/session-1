@@ -4,22 +4,31 @@ import java.util.Arrays;
 import java.util.SplittableRandom;
 
 public class Task7 {
+    static boolean[] controll;
+
+
+
     public static void main(String[] args){
         SplittableRandom random = new SplittableRandom();
         long[]  firstRandomArray = random.longs(20, 100, 130).toArray();
         long[] secondRandomArray = random.longs(25, 100, 130).toArray();
 
 //        для бОльшей "читабельности" результатов
-//        Arrays.sort(firstRandomArray);
-//        Arrays.sort(secondRandomArray);
+        Arrays.sort(firstRandomArray);
+        Arrays.sort(secondRandomArray);
 
         System.out.println(Arrays.toString(firstRandomArray));
-        System.out.println(Arrays.toString(secondRandomArray));
+        System.out.print(Arrays.toString(secondRandomArray)+"\n\n[");
 
         long[] arraysIntersection = intersection(firstRandomArray, secondRandomArray);
         long[] arraysIntersectionSecondVersion = intersectionSecondVersion(firstRandomArray, secondRandomArray);
+        System.out.print("\n[");
+        for (boolean cu:controll)
+            System.out.print((cu?" 1 ":" 0 ")+", ");
+        System.out.println("]\n");
 
-        System.out.println(Arrays.toString(arraysIntersection));
+        System.out.println();
+        System.out.println(Arrays.toString(arraysIntersection)+" правильный вариант");
         System.out.println(Arrays.toString(arraysIntersectionSecondVersion));
 
 
@@ -86,6 +95,8 @@ public class Task7 {
 
         // o(n)
         long[] large = arr1.length>arr2.length? arr1.clone(): arr2.clone();
+
+        controll = new boolean[large.length];
         // o(1)
         long[] small = arr1.length>arr2.length? arr2: arr1;
 
@@ -104,7 +115,22 @@ public class Task7 {
             while (tail-head>1){
                 position = (tail+head)/2;
                 if (large[position]==current) {
-                    intermediateArray[k++] = current;
+//                  intermediateArray[k++] = current;
+
+                                        // не трогай этот кусок, тут барьба с повторами дубликатов
+                                        System.out.print(current+", ");
+
+                                        while (position>=0 && large[position]==current)
+                                            position--;
+
+                                        while (++position<large.length && large[position]==current) {
+                                            if (!controll[position]) {
+                                                intermediateArray[k++] = current;
+                                                controll[position] = true;
+                                                break;
+                                            }
+                                        }
+
                     break;
                 }
                 else if (large[position]>current)
@@ -114,6 +140,13 @@ public class Task7 {
                     head = position;
             }
         }
+
+
+        // делает почти тоже самое
+//        for (long current:small)
+//            if (Arrays.binarySearch(large,current)>=0)
+//                intermediateArray[k++] = current;
+
 
         // Arrays.copyOf() -> System.arraycopy() -> он "нативный"
         // предполагаю что o(n)
