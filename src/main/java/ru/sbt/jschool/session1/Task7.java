@@ -1,11 +1,11 @@
 package ru.sbt.jschool.session1;
 
 import java.util.Arrays;
-import java.util.Random;
+import java.util.SplittableRandom;
 
 public class Task7 {
     public static void main(String[] args){
-        Random random = new Random();
+        SplittableRandom random = new SplittableRandom();
         long[]  firstRandomArray = random.longs(20, 100, 130).toArray();
         long[] secondRandomArray = random.longs(25, 100, 130).toArray();
         long[] arraysIntersection = intersection(firstRandomArray, secondRandomArray);

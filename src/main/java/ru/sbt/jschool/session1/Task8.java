@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -60,10 +61,10 @@ public class Task8 implements PropertyHelper{
     }
     @Override
     public Integer integerValue(String name) {
-        return Integer.parseInt(stringValue(name));
+        return Objects.nonNull(stringValue(name)) ? Integer.valueOf(stringValue(name)) : null;
     }
     @Override
     public Double doubleValue(String name) {
-        return Double.parseDouble(stringValue(name));
+        return Objects.nonNull(stringValue(name)) ? Double.valueOf(stringValue(name)) : null;
     }
 }

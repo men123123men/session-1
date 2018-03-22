@@ -23,10 +23,10 @@ public class Task6 {
         int maxLength = Math.max(b1.length(),b2.length());
         long result =0;
         for(int i=0,term =1; i<maxLength; i++,term*=2){
-            if(i<b1.length() && b1.charAt(b1.length()-i-1)=='1')
-                result+=term;
-            if(i<b2.length() && b2.charAt(b2.length()-i-1)=='1')
-                result+=term;
+            if(i<b1.length())
+                result+=term*(b1.charAt(b1.length()-i-1)-'0');
+            if(i<b2.length())
+                result+=term*(b2.charAt(b2.length()-i-1)-'0');
         }
         return result;
     }
